@@ -1,0 +1,60 @@
+import discord
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+TOKEN = os.getenv('DISCORD_TOKEN')
+GUILD = os.getenv('DISCORD_GUILD')
+
+client = discord.Client()
+
+@client.event
+async def on_ready():
+    guild = discord.utils.get(client.guilds, name=GUILD)
+    print(
+        f'{client.user} has connected to the following guild:\n'
+        f'{guild.name} (id: {guild.id})'
+    )
+
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+
+    if message.content == '!frase':
+        frases = [
+            "¡Hola! ¿Cómo estás?",
+            "¡Buenos días!",
+            "¡Buenas tardes!",
+            "¡Buenas noches!",
+            "¿Qué tal estuvo tu día?",
+            "¡Qué tengas un buen día!",
+            "¡Hasta pronto!",
+            "¡Hasta la vista, baby!",
+            "¡Hasta luego!",
+            "¡Nos vemos!",
+            "¡Adiós!",
+            "Que la fuerza te acompañe",
+            "La vida es como una caja de chocolates, nunca sabes lo que te va a tocar",
+            "La vida es como un rollo de papel higiénico, mientras más se acerca al final, más rápido se va.",
+            "El éxito no es la clave de la felicidad. La felicidad es la clave del éxito. Si amas lo que estás haciendo, tendrás éxito.",
+            "No te rindas, el principio siempre es el más difícil",
+            "La creatividad es la inteligencia divirtiéndose",
+            "La vida es demasiado corta para perder el tiempo en cosas que no te apasionan",
+            "La vida es una obra de teatro que no permite ensayos. Por eso, canta, ríe, baila, llora y vive intensamente cada momento de tu vida, antes de que el telón baje y la obra termine sin aplausos.",
+            "Nunca dejes para mañana lo que puedes hacer hoy",
+            "Si puedes soñarlo, puedes hacerlo",
+            "Sé el cambio que quieres ver en el mundo",
+            "No esperes por oportunidades, ¡créalas tú mismo!",
+            "Si te caes siete veces, levántate ocho",
+            "El éxito no es la llave de la felicidad. La felicidad es la llave del éxito. Si amas lo que estás haciendo, tendrás éxito.",
+            "La única forma de hacer un gran trabajo es amar lo que haces",
+            "Siempre parece imposible hasta que se hace",
+            "Siempre hay una luz al final del túnel",
+            "Lo más importante es disfrutar de la vida, ser feliz, eso es lo único que importa",
+            "No te tomes la vida demasiado en serio, no saldrás vivo de ella de todas formas",
+            "Si no puedes explicarlo de forma sencilla, es que no lo has entendido bien",
+            "La felicidad es cuando lo que piensas, lo que dices y lo que haces están en armonía",
+            "La vida es como andar en bicicleta, para mantener el equilibrio hay que seguir adelante",
+   
